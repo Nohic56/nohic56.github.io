@@ -4,7 +4,7 @@ title: "Communications"
 permalink: "Communications"
 order: 6
 ---
-
+{% if site.coms %}
 {% assign dateActu = 0 %}
 {% assign sorted = site.coms | sort: 'annee' | reverse %}
 {% for com in sorted %}
@@ -32,3 +32,6 @@ order: 6
   {% include toggle.html toggle-text=text-capture toggleId=toggleId PDF=PDF %}
 
 {% endfor %}
+{% else %}
+  <!-- Handle case where site.coms is null or empty -->
+{% endif %}
