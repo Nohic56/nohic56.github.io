@@ -1,0 +1,98 @@
+#
+# Be aware that even a small syntax error here can lead to failures in output.
+#
+
+sidebar:
+    education: True # set to False if you want education in main section instead of in sidebar
+
+    # Profile information
+    name: Nicolas Sénécaut
+    tagline: Interdisciplinary PhD student in Biology and Computer Science <br> <I>(specialized in proteomics)</I>
+    avatar: moi.jpg  #place a 100x100 picture inside /assets/images/ folder and provide the name of the file below
+
+    # Sidebar links
+    email: nicolas.senecaut@ijm.fr
+    phone: +33(0)6 01 59 17 74
+    linkedin: nicolassenecaut
+    github: Nohic56
+
+    languages:
+      - idiom: English
+        level: Professional
+
+      - idiom: French
+        level: Native
+
+    interests:
+      - item: Spear-Fishing
+        link:
+
+      - item: Sailing
+        link:
+
+career-profile:
+    title: Interdisciplinary PhD student in Biology and Computer Science (specialized in proteomics)
+education:
+    - degree: <B>Phd Student in FIRE Doctoral school</B>
+      university: <B>Paris University - CRI Paris Interdisciplinary Research Center</B>
+      time: 2013 - 2016
+      details: |
+        (part of the CRI-Paris “Interdisciplinary Research Center”)
+    - degree: <B>Master 2 AIV</B>
+      university: <B>Interdisciplinary approach of life science at Paris-Descartes University</B>
+      time: 2016 - 2018
+      details: |
+        (part of the CRI-Paris “Interdisciplinary Research Center”)
+    - degree: <B>Bachelor LFDV</B>
+      university: <B>Frontiers in Life Science at Paris-Descartes University</B>
+      time: 2013 - 2016
+      details: |
+        (part of the CRI-Paris “Interdisciplinary Research Center”)
+
+experiences:
+    - role: <B>M2 Internship 3</B>
+      time: 2018 (3 month)
+      company: <B>NCBI Quantitative Molecular Biological Physics (QMBP)</B>
+      details: |
+           USA (Bethesda Maryland) Development of proteomics tools using the RAId
+            software
+    - role: <B>M2 Internship 2</B>
+      time: 2018 (3 month)
+      company: <B>INRA Versailles (National Institute of Agronomic Research)</B>
+      details: |
+        IJPB – “Study of phenotypic bias induced by nitrogen deprivation of <I>A.
+        thaliana</I> : Mix-omics approach” Bioinformatics analyses using R software.
+    - role: <B>M2 Internship 1</B>
+      time: 2017 (3 month)
+      company: <B>Institut Jacques-Monod (Université de Paris - CNRS)</B>
+      details: |
+        Team Camadro: Mitochondria, metals and oxidative stress, Proteomics
+        Platform
+        “<I>C.Albicans</I> proteome modification following iron deficiency”
+    - role: <B>M1 Internship</B>
+      time: 2017 (6 month)
+      company: <B>École Normale Supérieur (IBENS)</B>
+      details: |
+        Eco-Evolutionary mathematics
+        “Quantifying phenotypic bias in the social amoeba <I>Dictyostelium
+        discoideum</I>”
+
+publications:
+    title: Publications
+    intro: |
+      For a more explicit contents, please see the "Articles" Section
+    papers:
+      - title: The Art of Computer Programming
+        link: "#"
+        authors: Donald E. Knuth
+        conference: Addison-Wesley, 1968
+
+skills:
+    title: Skills &amp; Proficiency
+
+    toolset:
+      - name: Python & Django
+        level: 98%
+
+footer: >
+    Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>

@@ -1,0 +1,40 @@
+{% assign education = site.data.data.education %}
+
+  <section class="section educations-section">
+
+    <h2 class="section-title">
+      <span class="fa-stack fa-xs">
+        <i class="fas fa-circle fa-stack-1x"></i>
+        <i class="fas fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      Education
+    </h2>
+	<ul>		
+    {% for graduation in education %}
+<div class="timeline-item timeline-item-border-all">
+    <div class="item">
+
+      <div class="meta">
+
+        <div class="upper-row">
+
+          <li><h3 class="degree">{{ graduation.degree }}</h3></li>
+          <div class="time">{{ graduation.time }}</div>
+
+        </div><!--//upper-row-->
+
+        <div class="university">{{ graduation.university }}</div>
+      </div><!--//meta-->
+
+      {% if graduation.details %}
+      <div class="details">
+        {{ graduation.details | markdownify }}
+      </div><!--//details-->
+      {% endif %}
+
+    </div><!--//item-->	
+	</div><!--//timeline-row-->
+    {% endfor %}
+</ul>
+  </section><!--//section-->
+

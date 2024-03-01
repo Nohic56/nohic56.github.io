@@ -1,0 +1,146 @@
+{% assign sidebar = site.data.data.sidebar %}
+<div class="profile-container">
+
+<div class="row equal">
+
+  <div class="col-xl-2" style="margin-bottom: 10px;">
+    {% if sidebar.name %}
+    <img class="avatar" src="{{ site.baseurl }}/assets/img/{{ sidebar.avatar }}" alt="profile picture" />
+    {% endif %}
+	</div>
+<div class="col-xl-4" style="margin-bottom: 10px;">
+    {% if sidebar.name %}
+    <h1 class="name">{{ sidebar.name }}</h1>
+    {% endif %}
+
+    {% if sidebar.tagline %}
+    <h3 class="tagline">{{ sidebar.tagline }}</h3>
+    {% endif %}
+	</div>
+  </div>
+  </div><!--//profile-container-->
+
+  {% include_relative  _CV/contact.html %}
+
+  {% if sidebar.education %}
+    {% include_relative  _CV/education.html %}
+  {% endif %}
+
+  {% include_relative  _CV/language.html %}
+  {% include_relative  _CV/interests.html %}
+
+
+<h5>Directeur de Thése</h5>
+
+<div class="row equal">
+  <div class="col-xl-4" style="margin-bottom: 10px;">
+	<div class="card" style="height: 100%;">
+		  {% include_relative  _CV/contact.html %}
+	  <div class="card-body">
+		<h5 class="card-title">Jean-Michel CAMADRO</h5>
+		<p class="card-text">Directeur de recherche 1er classe CNRS, IJM  - Directeur de thèse </p>
+	  </div>
+	</div>
+  </div>
+   <div class="col-xl-4" style="margin-bottom: 10px;">
+	<div class="card" style="height: 100%;">
+		  {% include_relative  _CV/contact.html %}
+	  <div class="card-body">
+		<h5 class="card-title">Gaëlle LELANDAIS</h5>
+		<p class="card-text">Professeur, Professeure, I2BC, Paris Saclay - Co-directrice de thèse</p>
+	  </div>
+	</div>
+  </div>
+</div>
+	
+	
+	
+
+{% include_relative  _CV/career-profile.html %}
+{% include_relative _CV/education.html %}
+
+{% include_relative  _CV/experiences.html %}
+
+{% include_relative  _CV/projects.html %}
+
+{% include_relative  _CV/publications.html %}
+
+{% include_relative  _CV/skills.html %}
+
+<div class="container">
+<div class="row ">
+  <div class="col-md-6" style="margin-bottom: 20px;">
+		  {% include_relative _CV/education.html %}
+  </div>
+   <div class="col-xl-6" style="margin-bottom: 20px;">
+		  {% include_relative  _CV/experiences.html %}
+  </div>
+</div>
+</div>
+
+
+
+<div id="Experience" class="divPad">
+                <div class="container">
+                    <h2>Expériences</h2>
+                    <p>Au cours de mes études, je me suis toujours attaché à mettre en pratique les connaissances théoriques acquises en cours à travers différents stages.</p>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="timeline-item timeline-item-border-all">
+                                <h4>Ingénieur de recherche en <i></i></h4>
+                                <p class="date">2020 - Présent</p>
+                                <p>
+                                    <b>Titre </b> - Data brokering<br>
+                                    <b>Encadrant </b> - Hélène Chiapello & Jacques van Helden <br>
+                                    <b>Localisation </b> - Institut Français de Bioinformatique & l'unité de recherche MaIAGE (INRAE)
+                                </p>
+                            </div>
+                            <div class="timeline-item timeline-item-border-all">
+                                <h4>Préparation d’un doctorat</h4>
+                                <p class="date">2017-2020</p>
+                                <p>
+                                    <b>Titre </b> - Bioinformatique et analyses de données multiomiques : Principes et applications chez les levures
+                                    pathogènes <i>Candida glabrata</i> et <i>Candida albicans</i><br>
+                                    <b>Encadrant </b> - Gaëlle Lelandais <br>
+                                    <b>Localisation </b> - Institut de Biologie Intégrative de la Cellule (I2BC) - Université Paris Sud
+                                </p>
+                            </div>
+
+                            <div class="timeline-item timeline-item-border-all">
+                                <h4>Stage en Biologie computationnelle et Bioinformatique</h4>
+                                <p class="date">2017</p>
+                                <p>
+                                    <b>Titre </b> - Étude de l’adaptation à la carence en fer de la levure pathogène <i>Candida glabrata</i> : analyse bioinformatique de données
+                                    multi-omiques <br>
+                                    <b>Encadrant </b> - Gaëlle Lelandais <br>
+                                    <b>Localisation </b> - Institut de Biologie Intégrative de la Cellule (I2BC) - Université Paris Sud <br>
+                                    <b>Durée </b> - 6 mois
+                                </p>
+
+                                <p class="date">2016</p>
+                                <p>
+                                    <b>Titre </b> - Etude de protéomique quantitative chez <i>C. albicans</i> et <i>C. glabrata</i> <br>
+                                    <b>Encadrant </b> - Gaëlle Lelandais <br>
+                                    <b>Localisation </b> - Institut Jacques Monod - Université Paris Diderot - Paris 7 - CNRS <br>
+                                    <b>Durée </b> - 2 mois
+                                </p>
+
+                                <p class="date">2016</p>
+                                <p>
+                                    <b>Titre </b> - Analyse de données à haut débit du programme temporel de la réplication <br>
+                                    <b>Encadrant </b> - Jean-Charles Cadoret <br>
+                                    <b>Localisation </b> - Institut Jacques Monod - Université Paris Diderot - Paris 7 - CNRS <br>
+                                    <b>Durée </b> - 5 mois
+                                </p>
+
+                                <p class="date">2015</p>
+                                <p>
+                                    <b>Titre </b> - Analyse de données à haut débit du programme temporel de la réplication <br>
+                                    <b>Encadrant </b> - Fabien Fauchereau <br>
+                                    <b>Localisation </b> - Institut Jacques Monod - Université Paris Diderot - Paris 7 - CNRS <br>
+                                    <b>Durée </b> - 3 mois
+                                </p>
+
+                            </div>
+
+                        </div>
