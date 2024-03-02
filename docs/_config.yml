@@ -35,7 +35,7 @@ plugins:
   - jekyll-feed
 
 collections:
-  articles:
+  publications:
     output: true
     permalink: /:collection/:title/
   annexes:
@@ -44,6 +44,10 @@ collections:
   codes:
     output: true
     permalink: /:collection/:title/
+  coms:
+    output: true
+    permalink: /:collection/:title/
+
 
 
 # Exclude from processing.

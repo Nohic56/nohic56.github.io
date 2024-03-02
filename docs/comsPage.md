@@ -19,9 +19,9 @@ order: 6
 
   {% capture titre %}{{ com.titre }}{% endcapture %}
   {% capture auteurs %}{{ com.auteurs }}{% endcapture %}
-  {% capture Type %}{{ com.Type }}{% endcapture %}
-  {% capture Conf %}{{ com.Conf }}{% endcapture %}
-  {% include com.html titre=titre auteurs=auteurs Type=Type Conf=Conf %}
+  {% capture type %}{{ com.type }}{% endcapture %}
+  {% capture conf %}{{ com.conf }}{% endcapture %}
+  {% include com.html titre=titre auteurs=auteurs type=type conf=conf %}
 
   {% capture text-capture %}
     {{ com.content }}

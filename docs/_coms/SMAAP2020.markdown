@@ -7,6 +7,7 @@ PMID: "35524123"
 PMCID: "" 
 annee: 2022
 PDF: "Minora.pdf"
+Type: SMAP
 ---
 
 ### Abstract

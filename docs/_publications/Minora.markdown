@@ -1,11 +1,11 @@
 ---
 titre: "Quantitative Proteomics in Yeast : From bSLIM and Proteome Discoverer Outputs to Graphical Assessment of the Significance of Protein Quantification Scores"
-auteurs: "Nicolas Sénécaut, Pierre Poulain, Laurent Lignières, Samuel Terrier, Véronique Legros, Guillaume Chevreux, Gaëlle Lelandais, and Jean-Michel Camadro"
+auteurs: "<b>Nicolas Sénécaut</b>, Pierre Poulain, Laurent Lignières, Samuel Terrier, Véronique Legros, Guillaume Chevreux, Gaëlle Lelandais, and Jean-Michel Camadro"
 DOI: "10.1007/978-1-0716-2257-5_16 "
 journal: "Yeast Functional Genomics"
 PMID: "35524123" 
 PMCID: "" 
-annee: 2022
+year: 2022
 PDF: "Minora.pdf"
 ---
 

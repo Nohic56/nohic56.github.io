@@ -1,12 +1,12 @@
 ---
 titre: "Capillary liquid chromatography coupled with mass spectrometry for analysis of nanogram protein quantities on a wide-pore superficially porous particle column in top-down proteomics"
-auteurs: "Laurent Lignieres, Véronique Legros, Manel Khelil, Nicolas Senecaut, Matthew A Lauber, Jean-Michel Camadro, Guillaume Chevreux"
+auteurs: "Laurent Lignieres, Véronique Legros, Manel Khelil, <b>Nicolas Sénécaut</b>, Matthew A Lauber, Jean-Michel Camadro, Guillaume Chevreux"
 
 DOI: "10.1016/j.jchromb.2022.123566"
 journal: "Journal of Chromatography B"
 PMID: "36516651" 
 PMCID: "" 
-annee: 2022
+year: 2022
 PDF: "CapChrom2022.pdf"
 ---
 

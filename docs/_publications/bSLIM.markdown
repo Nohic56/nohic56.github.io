@@ -1,11 +1,11 @@
 ---
 titre: "Novel Insights into Quantitative Proteomics from an Innovative Bottom-Up Simple Light Isotope Metabolic (bSLIM) Labeling Data Processing Strategy"
-auteurs: "Nicolas Sénécaut, Gelio Alves, Hendrik Weisser, Laurent Lignières, Samuel Terrier, Lilian Yang-Crosson, Pierre Poulain, Gaëlle Lelandais, Yi-Kuo Yu, and Jean-Michel Camadro"
+auteurs: "<b>Nicolas Sénécaut</b>, Gelio Alves, Hendrik Weisser, Laurent Lignières, Samuel Terrier, Lilian Yang-Crosson, Pierre Poulain, Gaëlle Lelandais, Yi-Kuo Yu, and Jean-Michel Camadro"
 DOI: "10.1021/acs.jproteome.0c00478"
 journal: "Journal of Proteome Research"
 PMID: "" 
 PMCID: "" 
-annee: 2021
+year: 2021
 PDF: "bSLIM.pdf"
 ---
 
