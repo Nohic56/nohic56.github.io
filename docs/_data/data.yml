@@ -35,10 +35,10 @@ career-profile:
 education:
     - degree: <B>Phd Student in FIRE Doctoral school</B>
       university: <B>Paris University - CRI Paris Interdisciplinary Research Center</B>
-      time: 2013 - 2016
+      time: 2018 - 2022
       details: |
         (part of the CRI-Paris “Interdisciplinary Research Center”)
-    - degree: <B>Master 2 AIV</B>
+    - degree: <B>Master degree AIV</B>
       university: <B>Interdisciplinary approach of life science at Paris-Descartes University</B>
       time: 2016 - 2018
       details: |
@@ -51,19 +51,25 @@ education:
 
 experiences:
     - role: <B>M2 Internship 3</B>
-      time: 2018 (3 month)
+      time: 2017-2018
+      company: <B>NCBI Quantitative Molecular Biological Physics (QMBP)</B>
+      details: |
+           USA (Bethesda Maryland) Development of proteomics tools using the RAId
+            software
+    - role: <B>M2 Internship 3</B>
+      time: 2017-2018
       company: <B>NCBI Quantitative Molecular Biological Physics (QMBP)</B>
       details: |
            USA (Bethesda Maryland) Development of proteomics tools using the RAId
             software
     - role: <B>M2 Internship 2</B>
-      time: 2018 (3 month)
+      time: 2017-2018
       company: <B>INRA Versailles (National Institute of Agronomic Research)</B>
       details: |
         IJPB – “Study of phenotypic bias induced by nitrogen deprivation of <I>A.
         thaliana</I> : Mix-omics approach” Bioinformatics analyses using R software.
     - role: <B>M2 Internship 1</B>
-      time: 2017 (3 month)
+      time: 2017-2018
       company: <B>Institut Jacques-Monod (Université de Paris - CNRS)</B>
       details: |
         Team Camadro: Mitochondria, metals and oxidative stress, Proteomics
@@ -78,21 +84,25 @@ experiences:
         discoideum</I>”
 
 publications:
-    title: Publications
+    title: Selected Publications
     intro: |
-      For a more explicit contents, please see the "Articles" Section
+      For a more explicit contents, please see the "Publications" Section
     papers:
-      - title: The Art of Computer Programming
-        link: "#"
-        authors: Donald E. Knuth
-        conference: Addison-Wesley, 1968
+      - title: "Quantitative Proteomics in Yeast : From bSLIM and Proteome Discoverer Outputs to Graphical Assessment of the Significance of Protein Quantification Scores"
+        link: "Yeast Functional Genomics - 10.1007/978-1-0716-2257-5_16"
+        authors: Nicolas Sénécaut, Pierre Poulain, Laurent Lignières, Samuel Terrier, Véronique Legros, Guillaume Chevreux, Gaëlle Lelandais, and Jean-Michel Camadro
+        conference: Yeast Functional Genomics - 10.1007/978-1-0716-2257-5_16
 
 skills:
     title: Skills &amp; Proficiency
 
     toolset:
-      - name: Python & Django
-        level: 98%
+      - name: R
+        level: 70%
+      - name: Python
+        level: 70%
+      - name: C++
+        level: 60%
 
 footer: >
     Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>

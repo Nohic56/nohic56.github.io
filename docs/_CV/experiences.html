@@ -8,32 +8,31 @@
     </span>
     Experiences
   </h2>
-	<ul>
   {% for experience in experiences %}
   <div class="timeline-item timeline-item-border-all">
   <div class="item">
-
-    <div class="meta">
-
-      <div class="upper-row">
-       <li><h3 class="job-title">{{ experience.role }}</h3></li>
-        <div class="time">{{ experience.time }}</div>
-      </div><!--//upper-row-->
-
-      <div class="company">{{ experience.company }}</div>
-
-    </div><!--//meta-->
-
-    {% if experience.details %}
-    <div class="details">
-      {{ experience.details | markdownify }}
-    </div><!--//details-->
-    {% endif %}
-
-  </div><!--//item-->
-  	</div><!--//timeline-row-->
-  {% endfor %}
-</ul>
-</section><!--//section-->
+  <div class="timeline2">
+    <!--{% for experience in experiences %}-->
+      <!--<div class="timeline-item2">-->
+        <div class="timeline-content2">
+          <div class="meta2">
+            <div class="upper-row">
+              <h3 class="job-title">{{ experience.role }}</h3>
+              <div class="date">{{ experience.time }}</div>
+            </div>
+            <div class="company2">{{ experience.company }}</div>
+          </div>
+          {% if experience.details %}
+            <div class="details2">
+              {{ experience.details | markdownify }}
+            </div>
+          {% endif %}
+        </div>
+      <!--</div>-->
+    <!--{% endfor %}-->
+  </div>
+</div><!--//item-->
+</div><!--//timeline-row-->
+{% endfor %}
+</section>
 {% endif %}
-

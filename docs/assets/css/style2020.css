@@ -395,7 +395,45 @@ ul ul a {
 /* ---------------------------------------------------
     Timeline
 ----------------------------------------------------- */
-
+.timeline2 {
+    position: relative;
+    padding: 20px 0;
+  }
+  
+  .timeline-item2 {
+    display: flex;
+    margin-bottom: 40px;
+  }
+  
+  .timeline-content2 {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    width: 50%;
+  }
+  
+  .meta2 {
+    margin-bottom: 10px;
+  }
+  
+  .job-title2 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .company2 {
+    font-style: italic;
+  }
+  
+  .date2 {
+    color: #777;
+  }
+  
+  .details2 {
+    margin-top: 15px;
+  }
+  
 .timeline-item {
 	padding: 0.2em 2em;
 	position: relative;
@@ -719,6 +757,10 @@ div.highlight {
     background-color: #F7F8F3;
 }
 
+.language-cpp table {
+    width: 100% ;
+    background-color: #fbfbfb;
+}
 
 pre {
     padding: 10px;
