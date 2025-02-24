@@ -32,7 +32,8 @@ github_username:  Nohic56
 # Build settings
 theme: minima
 plugins:
-  - jekyll-feed
+#  - jekyll-feed
+  - jekyll-remote-theme
 
 collections:
   publications:
