@@ -292,6 +292,7 @@ DEPENDENCIES
   bundler
   github-pages (~> 232)
   jekyll (~> 3.10)
+  jekyll-github-metadata
   jekyll-remote-theme
   jekyll-text-theme!
   jekyll-timeago (~> 0.13.1)
