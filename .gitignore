@@ -1,5 +1,6 @@
-\bin
-bin
-bin2
-/bin/*
-bin/
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+Gemfile.lock
