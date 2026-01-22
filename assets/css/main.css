@@ -1,0 +1,68 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  color: #1f2933;
+  background: #f9fafb;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nav {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #1f2933;
+}
+
+.hero {
+  padding: 5rem 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+}
+
+.hero-subtitle {
+  color: #4b5563;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  background: #2563eb;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 0.3rem;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.highlight-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 6px;
+}
