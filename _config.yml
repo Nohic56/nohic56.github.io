@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Nicolas Sénécaut WebSite
+title: Nicolas Sénécaut | Computational Proteomics & Bioinformatics
 email: nicolas@senecaut.fr
 description: Computational Proteomics & Bioinformatics
 baseurl: "" # the subpath of your site, e.g. /blog

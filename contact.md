@@ -3,16 +3,7 @@ layout: default
 title: Contact
 ---
 
-<form class="contact-form">
-  <input type="text" placeholder="Name">
-  <input type="email" placeholder="Email">
-  <textarea placeholder="Message"></textarea>
-  <button type="submit" class="btn">Send</button>
-</form>
-
----
-
-**Email:** your.email@example.com  
+**Email:** ********@senecaut.fr
 
 **Profiles:**  
-[ORCID](#) · [GitHub](#) · [LinkedIn](#) · [Twitter](#)
+[ORCID](https://orcid.org/0000-0001-7948-6776) · [GitHub](https://github.com/Nohic56) · [LinkedIn](https://fr.linkedin.com/in/nicolassenecaut/fr)

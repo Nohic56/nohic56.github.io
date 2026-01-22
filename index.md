@@ -1,7 +1,8 @@
 ---
-layout: "home"
-title: "Welcome to my Website !"
+layout: default
+title: Home
 order: 1
 ---
 
-{% include home.html %}
+{% include home-hero.html %}
+{% include home-about.html %}

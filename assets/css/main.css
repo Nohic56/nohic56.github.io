@@ -1,68 +1,217 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  color: #1f2933;
-  background: #f9fafb;
+/* ==========================
+   Global layout
+   ========================== */
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
 }
+
+/* Vertical rhythm */
+section {
+  margin-bottom: 4rem;
+}
+
+/* ==========================
+   Base typography
+   ========================== */
+
+body {
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  line-height: 1.7;
+  color: #1f2933;
+  background-color: #f9fafb;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p {
+  max-width: 90ch;
+  margin-bottom: 1rem;
+}
+
+/* ==========================
+   Navigation
+   ========================== */
 
 .site-header {
   position: sticky;
   top: 0;
-  background: white;
+  z-index: 10;
+  background-color: #ffffff;
   border-bottom: 1px solid #e5e7eb;
 }
 
 .nav {
   max-width: 1100px;
-  margin: auto;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  align-items: center;
 }
 
 .nav a {
-  margin-left: 1rem;
+  margin-left: 1.2rem;
   text-decoration: none;
   color: #1f2933;
+  font-weight: 400;
 }
+
+.nav a:hover {
+  color: #2563eb;
+}
+
+/* ==========================
+   Hero section
+   ==========================
 
 .hero {
-  padding: 5rem 1rem;
   text-align: center;
+  padding: 5rem 1rem 4rem;
 }
-
+ */
 .hero h1 {
-  font-size: 2.5rem;
+  max-width: 22ch;
+  margin: 0 auto 1rem;
 }
 
 .hero-subtitle {
+  max-width: 60ch;
+  margin: 0 auto 2rem;
   color: #4b5563;
 }
+/* ==========================
+   Hero section with background
+   ========================== */
+
+.hero {
+  text-align: center;
+  padding: 6rem 1rem 5rem;
+  
+  /* New background */
+  background-image: url('/assets/img/hero-bg.jpg');
+  background-size: cover;       /* cover full width */
+  background-position: center;  /* center the focal point */
+  background-repeat: no-repeat;
+  color: white;                 /* text will be white over image */
+  position: relative;
+}
+
+/* Optional: add subtle dark overlay for text readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.35);  /* semi-transparent dark overlay */
+  z-index: 0;
+}
+
+.hero h1,
+.hero-subtitle,
+.hero-buttons {
+  position: relative;
+  z-index: 1;  /* text above overlay */
+}
+
+/* ==========================
+   Buttons
+   ========================== */
 
 .btn {
+  display: inline-block;
   padding: 0.6rem 1.2rem;
-  background: #2563eb;
-  color: white;
+  background-color: #2563eb;
+  color: #ffffff;
   border-radius: 4px;
   text-decoration: none;
+  font-size: 0.95rem;
   margin: 0.3rem;
 }
 
+.btn:hover {
+  background-color: #1d4ed8;
+}
+
 .btn-outline {
-  background: transparent;
+  background-color: transparent;
   color: #2563eb;
   border: 1px solid #2563eb;
 }
 
+.btn-outline:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+/* ==========================
+   Highlights section
+   ========================== */
+
 .highlights {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  padding: 2rem 0;
+  gap: 1.5rem;
+  padding-top: 1rem;
 }
 
 .highlight-card {
-  background: white;
+  background-color: #ffffff;
   padding: 1.5rem;
   border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.highlight-card h3 {
+  margin-top: 0;
+}
+
+/* ==========================
+   Footer (if used)
+   ========================== */
+
+footer {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* ==========================
+   Responsive adjustments
+   ========================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+  }
 }

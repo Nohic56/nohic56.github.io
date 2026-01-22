@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="description" content="Academic research in computational proteomics, cell cycle regulation, and bioinformatics. Quantitative mass spectrometry and data-driven biology.">
+
   <meta charset="UTF-8">
-  <title>{{ page.title }} | {{ site.title }}</title>
+  <title>
+  {% if page.title == "Home" %}
+    {{ site.title }}
+  {% else %}
+    {{ page.title }} | {{ site.title }}
+  {% endif %}
+</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Fonts -->
