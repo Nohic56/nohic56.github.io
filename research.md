@@ -29,7 +29,6 @@ large-scale mass spectrometry datasets and connect them to mechanistic models.
 - MaxQuant, Peaks, DIA-NN  
 - Custom Python/C++ scripts
 
-*Placeholder for proteomics data figure.*
 
 ---
 
@@ -45,5 +44,3 @@ large-scale mass spectrometry datasets and connect them to mechanistic models.
 **Outputs**
 - 3 first-author publications  
 - Open-source algorithms
-
-*Placeholder for protein interaction network.*
