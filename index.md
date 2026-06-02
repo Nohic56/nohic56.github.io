@@ -27,8 +27,7 @@ description: Computational proteomics, bioinformatics, and cell cycle regulation
   </div>
 
   <div class="hero-portrait">
-    <!-- Replace src with your actual photo, e.g. /assets/img/portrait.jpg -->
-    <div class="hero-portrait-placeholder">NS</div>
+  <img src="{{'/assets/img/NS.jpg' | relative_url }}">
   </div>
 </section>
 
@@ -48,11 +47,11 @@ description: Computational proteomics, bioinformatics, and cell cycle regulation
       </p>
       <p>
         Today, as a Postdoctoral researcher in <strong>Julia Kamenz's lab</strong> at the University
-        of Groningen, I apply these methods to study temporal regulation of the APC/C complex using
+        of Groningen, I apply these analytical methods to study temporal regulation of the APC/C complex using
         <em>Xenopus laevis</em> egg extracts.
       </p>
       <p>
-        Outside the lab I'm a proud Breton — happiest near the sea or on a skateboard.
+        Outside the lab like a proud Breton I am happiest near the sea or on a skateboard.
       </p>
     </div>
   </div>
@@ -61,16 +60,16 @@ description: Computational proteomics, bioinformatics, and cell cycle regulation
     <h2>Positions</h2>
     <ul class="timeline">
       <li class="timeline-item">
-        <span class="timeline-year">2023–</span>
+        <span class="timeline-year">2023–26</span>
         <div class="timeline-body">
           <div class="timeline-role">Postdoctoral Researcher</div>
           <div class="timeline-place">Kamenz Lab · University of Groningen</div>
         </div>
       </li>
       <li class="timeline-item">
-        <span class="timeline-year">2019–22</span>
+        <span class="timeline-year">2018–22</span>
         <div class="timeline-body">
-          <div class="timeline-role">PhD in Biology / Informatics</div>
+          <div class="timeline-role">PhD in Biology and Informatics</div>
           <div class="timeline-place">Institut Jacques Monod · Université Paris Cité</div>
         </div>
       </li>

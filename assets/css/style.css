@@ -14,9 +14,9 @@
   --text:        #1E1C19;       /* deep warm black */
   --text-2:      #5A574F;       /* muted */
   --text-3:      #8A877F;       /* hint */
-  --accent:      #2D6B5A;       /* muted teal */
-  --accent-lt:   #E5F0EC;
-  --accent-dark: #1A4438;
+  --accent:      #328df5;       /* muted teal */
+  --accent-lt:   #e5ebf0;
+  --accent-dark: #1a1b44;
   --border:      rgba(30,28,25,.1);
   --border-md:   rgba(30,28,25,.18);
 
@@ -628,7 +628,15 @@ strong { color: var(--text); font-weight: 500; }
     padding: 3rem 1.5rem 2.5rem;
     gap: 2rem;
   }
-  .hero-portrait { display: none; }
+  .hero-portrait { position: relative; width: 100%; max-width: 600px; margin: 0 auto; }
+  .hero-portrait-img { display: block; width: 100%; height: auto; border-radius: 8px; }
+  .hero-portrait-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight:700; background:#f0f0f0; color:#333; border-radius:8px; }
+
+  /* hide placeholder when image loads */
+  .hero-portrait-img + .hero-portrait-placeholder { display: none; }
+  .hero-portrait-img[src=""], .hero-portrait-img[aria-hidden="true"] { display: none; }
+  .hero-portrait-img:not([src]) + .hero-portrait-placeholder,
+  .hero-portrait-img[src=""] + .hero-portrait-placeholder { display: flex; }
 
   .bio-section {
     grid-template-columns: 1fr;
