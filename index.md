@@ -8,10 +8,9 @@ description: Computational proteomics, bioinformatics, and cell cycle regulation
 <section class="hero">
   <div class="hero-content">
     <p class="hero-kicker">Postdoctoral Researcher · University of Groningen</p>
-    <h1>Exploring cell cycle regulation through quantitative proteomics</h1>
+    <h1>Quantitative proteomics, computational biology, and measurement science</h1>
     <p class="hero-sub">
-      Computational approaches to understand how cells time mitosis —
-      combining mass spectrometry, bioinformatics, and experimental biology.
+      Developing quantitative proteomics and computational methods to measure biological systems.
     </p>
     <div class="hero-actions">
       <a href="/research" class="btn btn-primary">View Research →</a>
@@ -39,19 +38,24 @@ description: Computational proteomics, bioinformatics, and cell cycle regulation
     <h2>About</h2>
     <div class="bio-text">
       <p>
-        I'm Nicolas, a researcher focused on <strong>computational proteomics, bioinformatics,
-        and cell cycle regulation</strong>. I trained in Interdisciplinary Sciences at Paris Descartes
-        University, then completed a PhD at the <strong>Institut Jacques Monod</strong> (Camadro Lab),
-        where I developed novel quantitative proteomics approaches using both computational and
-        experimental techniques.
-      </p>
-      <p>
-        Today, as a Postdoctoral researcher in <strong>Julia Kamenz's lab</strong> at the University
-        of Groningen, I apply these analytical methods to study temporal regulation of the APC/C complex using
-        <em>Xenopus laevis</em> egg extracts.
-      </p>
-      <p>
-        Outside the lab like a proud Breton I am happiest near the sea or on a skateboard.
+        I'm Nicolas, a researcher working at the interface of <strong>quantitative proteomics,
+    computational biology, biochemistry, and mass spectrometry</strong>. My work focuses on
+    developing analytical and computational approaches to measure and understand complex biological systems.
+  </p>
+  <p>
+    I trained in Interdisciplinary Sciences at Paris Descartes University and completed my PhD at the
+    <strong>Institut Jacques Monod</strong> (Camadro Lab), where I developed novel quantitative proteomics
+    methodologies by combining experimental design, isotope-based approaches, computational analysis,
+    and software development.
+  </p>
+  <p>
+    Currently, as a postdoctoral researcher in <strong>Julia Kamenz's lab</strong> at the University of Groningen,
+    I use quantitative proteomics, phosphoproteomics, and computational analysis to investigate dynamic cellular
+    processes in <em>Xenopus laevis</em> egg extracts. More broadly, I am interested in developing new ways to
+    extract quantitative information from complex biological data and in building tools that enable biological discovery.
+  </p>
+  <p>
+    Outside the lab, as a proud Breton, I am happiest near the sea or on a skateboard.
       </p>
     </div>
   </div>
@@ -77,15 +81,20 @@ description: Computational proteomics, bioinformatics, and cell cycle regulation
 
     <br>
 
-    <h2>Expertise</h2>
-    <div class="highlights">
-      <span class="chip chip-accent">Quantitative proteomics</span>
-      <span class="chip chip-accent">Mass spectrometry</span>
-      <span class="chip chip-accent">Bioinformatics</span>
-      <span class="chip">Python · C++</span>
-      <span class="chip">R</span>
-      <span class="chip">Cell cycle regulation</span>
-      <span class="chip">Xenopus egg extracts</span>
-    </div>
+<h2>Expertise</h2>
+<div class="highlights">
+  <span class="chip chip-accent">Quantitative proteomics</span>
+  <span class="chip chip-accent">Mass spectrometry–based measurement</span>
+  <span class="chip chip-accent">Computational proteomics</span>
+  <span class="chip">Python</span>
+  <span class="chip">C++</span>
+  <span class="chip">R</span>
+  <span class="chip">Method development</span>
+  <span class="chip">Data analysis pipelines</span>
+  <span class="chip">Phosphoproteomics</span>
+  <span class="chip">Signal processing</span>
+  <span class="chip">Cell cycle biology</span>
+  <span class="chip">Xenopus egg extracts</span>
+</div>
   </div>
 </section>
