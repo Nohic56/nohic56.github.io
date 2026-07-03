@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#172033">
+  <title>IBS / FODMAP Barcode Checker</title>
+
+  <!-- Open-source barcode reader: ZXing for browsers -->
+  <script src="https://unpkg.com/@zxing/browser@0.2.0"></script>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #eef2f7;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #d8dee9;
+      --primary: #253858;
+      --primary-hover: #17233c;
+      --secondary: #e9edf4;
+      --danger: #a42a2a;
+      --success: #18753c;
+      --warning-bg: #fff4e5;
+      --warning-border: #ffbf69;
+      --success-bg: #eaf7ef;
+      --success-border: #7cc997;
+      --shadow: 0 12px 36px rgba(23, 32, 51, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: max(18px, env(safe-area-inset-top))
+               max(14px, env(safe-area-inset-right))
+               max(28px, env(safe-area-inset-bottom))
+               max(14px, env(safe-area-inset-left));
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: clamp(18px, 4vw, 30px);
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.55rem, 6vw, 2.2rem);
+      line-height: 1.15;
+    }
+
+    h2, h3 { line-height: 1.25; }
+
+    .lead, .muted {
+      color: var(--muted);
+    }
+
+    .lead {
+      margin-top: 0;
+    }
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 20px 0 14px;
+    }
+
+    .mode-button,
+    button,
+    .file-label {
+      min-height: 46px;
+      border: 0;
+      border-radius: 11px;
+      padding: 11px 14px;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+      transition: transform .08s ease, background .15s ease, opacity .15s ease;
+    }
+
+    button:active,
+    .file-label:active {
+      transform: translateY(1px);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+    }
+
+    .mode-button {
+      background: var(--secondary);
+      color: var(--text);
+    }
+
+    .mode-button.active,
+    .primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .secondary {
+      background: var(--secondary);
+      color: var(--text);
+    }
+
+    .danger {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .panel {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    label.field-label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 650;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 11px 13px;
+      font: inherit;
+      background: var(--card);
+      color: var(--text);
+    }
+
+    input[type="text"]:focus {
+      outline: 3px solid rgba(37, 56, 88, .18);
+      border-color: var(--primary);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 10px;
+    }
+
+    .actions > * {
+      flex: 1 1 180px;
+    }
+
+    #video {
+      width: 100%;
+      max-height: 58vh;
+      margin-top: 10px;
+      border-radius: 13px;
+      background: #090b10;
+      object-fit: cover;
+    }
+
+    .scanner-frame {
+      position: relative;
+    }
+
+    .scanner-hint {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .file-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    #imagePreview {
+      display: none;
+      width: 100%;
+      max-height: 50vh;
+      margin-top: 12px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: #f0f2f5;
+    }
+
+    #status {
+      min-height: 24px;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    .result {
+      margin-top: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+
+    .result-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .result-card.warning {
+      background: var(--warning-bg);
+      border-color: var(--warning-border);
+    }
+
+    .result-card.success {
+      background: var(--success-bg);
+      border-color: var(--success-border);
+    }
+
+    .product-header {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 13px;
+      align-items: center;
+    }
+
+    .product-image {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .product-image.placeholder {
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: .75rem;
+      text-align: center;
+      padding: 5px;
+    }
+
+    .product-name {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .badge {
+      display: inline-block;
+      margin: 3px 5px 3px 0;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(23, 32, 51, .09);
+      font-size: .84rem;
+      font-weight: 650;
+    }
+
+    .trigger-list {
+      padding-left: 21px;
+    }
+
+    details {
+      margin-top: 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(23, 32, 51, .06);
+      font: .92rem/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .disclaimer {
+      margin: 22px 2px 0;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    @media (max-width: 570px) {
+      .mode-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-header {
+        grid-template-columns: 62px 1fr;
+      }
+
+      .product-image {
+        width: 62px;
+        height: 62px;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101622;
+        --card: #192131;
+        --text: #f0f3f8;
+        --muted: #aeb8c8;
+        --border: #39445a;
+        --primary: #7d9bd1;
+        --primary-hover: #6b88bc;
+        --secondary: #2b3548;
+        --warning-bg: #382b19;
+        --warning-border: #8f692f;
+        --success-bg: #173225;
+        --success-border: #397952;
+        --shadow: 0 12px 36px rgba(0, 0, 0, .28);
+      }
+
+      .primary,
+      .file-label,
+      .mode-button.active {
+        color: #101622;
+      }
+
+      .product-image {
+        background: #fff;
+      }
+
+      #imagePreview {
+        background: #111827;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<main>
+  <section class="card">
+    <h1>IBS / FODMAP Barcode Checker</h1>
+    <p class="lead">
+      Scan a product, upload a barcode photo, or type the number manually.
+      Product data comes from Open Food Facts.
+    </p>
+
+    <div class="mode-grid" role="tablist" aria-label="Barcode input method">
+      <button class="mode-button active" id="manualTab" type="button" onclick="showMode('manual')">
+        Type barcode
+      </button>
+      <button class="mode-button" id="cameraTab" type="button" onclick="showMode('camera')">
+        Use camera
+      </button>
+      <button class="mode-button" id="photoTab" type="button" onclick="showMode('photo')">
+        Upload photo
+      </button>
+    </div>
+
+    <section id="manualPanel" class="panel active">
+      <label class="field-label" for="barcode">EAN / UPC barcode number</label>
+      <input
+        id="barcode"
+        type="text"
+        inputmode="numeric"
+        autocomplete="off"
+        placeholder="Example: 3017624010701"
+        aria-describedby="barcodeHelp"
+      >
+      <p id="barcodeHelp" class="scanner-hint">Spaces and hyphens are removed automatically.</p>
+      <div class="actions">
+        <button class="primary" type="button" onclick="lookupFromInput()">Check product</button>
+      </div>
+    </section>
+
+    <section id="cameraPanel" class="panel">
+      <div class="scanner-frame">
+        <video id="video" playsinline muted></video>
+      </div>
+      <p class="scanner-hint">
+        Hold the barcode steady, fill most of the frame, and use good lighting.
+      </p>
+      <div class="actions">
+        <button class="primary" id="startCameraButton" type="button" onclick="startCamera()">
+          Start camera
+        </button>
+        <button class="danger" id="stopCameraButton" type="button" onclick="stopCamera()" disabled>
+          Stop camera
+        </button>
+      </div>
+    </section>
+
+    <section id="photoPanel" class="panel">
+      <label class="file-label" for="photoInput">Choose or take a barcode photo</label>
+      <input id="photoInput" type="file" accept="image/*" capture="environment">
+      <img id="imagePreview" alt="Selected barcode image preview">
+      <p class="scanner-hint">
+        Crop closely around the barcode when possible. A sharp, straight photo works best.
+      </p>
+    </section>
+
+    <div id="status" role="status" aria-live="polite"></div>
+    <div id="result" class="result" aria-live="polite"></div>
+
+    <p class="disclaimer">
+      This is a screening aid, not a medical diagnosis or a definitive low-FODMAP certification.
+      FODMAP effects depend on serving size, formulation, and individual tolerance. Open Food Facts
+      is community-maintained, so ingredient information may be incomplete or outdated.
+    </p>
+  </section>
+</main>
+
+<script>
+"use strict";
+
+const TRIGGERS = [
+  { terms: ["sorbitol", "e420"], name: "Sorbitol", group: "Polyol", level: "High concern" },
+  { terms: ["mannitol", "e421"], name: "Mannitol", group: "Polyol", level: "High concern" },
+  { terms: ["xylitol", "e967"], name: "Xylitol", group: "Polyol", level: "High concern" },
+  { terms: ["maltitol", "e965"], name: "Maltitol", group: "Polyol", level: "High concern" },
+  { terms: ["isomalt", "e953"], name: "Isomalt", group: "Polyol", level: "High concern" },
+  { terms: ["erythritol", "e968"], name: "Erythritol", group: "Polyol", level: "Tolerance-dependent" },
+
+  { terms: ["inulin", "inuline"], name: "Inulin", group: "Fructan", level: "High concern" },
+  { terms: ["chicory root", "chicory fibre", "chicory fiber", "racine de chicoree"],
+    name: "Chicory root", group: "Fructan / inulin", level: "High concern" },
+  { terms: ["fructooligosaccharide", "fructo-oligosaccharide", "fos"],
+    name: "Fructooligosaccharides (FOS)", group: "Fructan", level: "High concern" },
+
+  { terms: ["onion", "onion powder", "oignon", "poudre d oignon"],
+    name: "Onion", group: "Fructan", level: "High concern" },
+  { terms: ["garlic", "garlic powder", "ail", "poudre d ail"],
+    name: "Garlic", group: "Fructan", level: "High concern" },
+
+  { terms: ["lactose"], name: "Lactose", group: "Disaccharide", level: "Tolerance-dependent" },
+  { terms: ["milk powder", "skimmed milk powder", "whey powder", "lait en poudre", "lactoserum en poudre"],
+    name: "Possible lactose source", group: "Lactose", level: "Tolerance-dependent" },
+
+  { terms: ["high fructose corn syrup", "glucose-fructose syrup", "fructose-glucose syrup",
+            "sirop de glucose-fructose", "sirop de fructose-glucose"],
+    name: "Fructose-rich syrup", group: "Excess fructose", level: "Serving-dependent" },
+  { terms: ["fructose"], name: "Fructose", group: "Monosaccharide", level: "Serving-dependent" },
+
+  { terms: ["wheat", "wheat flour", "ble", "farine de ble"],
+    name: "Wheat", group: "Fructan", level: "Serving-dependent" },
+  { terms: ["rye", "seigle"], name: "Rye", group: "Fructan", level: "Serving-dependent" },
+  { terms: ["barley", "orge"], name: "Barley", group: "Fructan", level: "Serving-dependent" },
+
+  { terms: ["lentil", "lentils", "lentille", "lentilles"],
+    name: "Lentils", group: "GOS", level: "Serving-dependent" },
+  { terms: ["chickpea", "chickpeas", "pois chiche", "pois chiches"],
+    name: "Chickpeas", group: "GOS", level: "Serving-dependent" },
+  { terms: ["kidney bean", "black bean", "white bean", "haricot rouge", "haricot blanc"],
+    name: "Beans", group: "GOS", level: "Serving-dependent" }
+];
+
+let cameraReader = null;
+let cameraControls = null;
+let lastScannedCode = "";
+let lastScanTime = 0;
+
+const barcodeInput = document.getElementById("barcode");
+const statusBox = document.getElementById("status");
+const resultBox = document.getElementById("result");
+const video = document.getElementById("video");
+const photoInput = document.getElementById("photoInput");
+const imagePreview = document.getElementById("imagePreview");
+const startCameraButton = document.getElementById("startCameraButton");
+const stopCameraButton = document.getElementById("stopCameraButton");
+
+barcodeInput.addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    lookupFromInput();
+  }
+});
+
+photoInput.addEventListener("change", decodeSelectedPhoto);
+window.addEventListener("pagehide", stopCamera);
+
+function showMode(mode) {
+  const modes = ["manual", "camera", "photo"];
+
+  for (const item of modes) {
+    document.getElementById(`${item}Panel`).classList.toggle("active", item === mode);
+    document.getElementById(`${item}Tab`).classList.toggle("active", item === mode);
+  }
+
+  if (mode !== "camera") {
+    stopCamera();
+  }
+
+  clearStatus();
+
+  if (mode === "camera") {
+    setStatus("Press “Start camera” and allow camera access.", false);
+  }
+}
+
+function cleanBarcode(value) {
+  return String(value || "").replace(/[^\d]/g, "");
+}
+
+function isPlausibleBarcode(code) {
+  return /^\d{8,14}$/.test(code);
+}
+
+function lookupFromInput() {
+  const code = cleanBarcode(barcodeInput.value);
+  barcodeInput.value = code;
+
+  if (!isPlausibleBarcode(code)) {
+    setStatus("Please enter an 8–14 digit EAN/UPC barcode.", true);
+    resultBox.innerHTML = "";
+    return;
+  }
+
+  lookupProduct(code);
+}
+
+async function startCamera() {
+  clearResult();
+
+  if (!window.ZXingBrowser) {
+    setStatus("The barcode library did not load. Check your internet connection.", true);
+    return;
+  }
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    setStatus("This browser does not support camera access.", true);
+    return;
+  }
+
+  stopCamera();
+  startCameraButton.disabled = true;
+  stopCameraButton.disabled = false;
+  setStatus("Starting the camera…", false);
+
+  try {
+    cameraReader = new ZXingBrowser.BrowserMultiFormatReader();
+
+    const constraints = {
+      audio: false,
+      video: {
+        facingMode: { ideal: "environment" },
+        width: { ideal: 1280 },
+        height: { ideal: 720 }
+      }
+    };
+
+    cameraControls = await cameraReader.decodeFromConstraints(
+      constraints,
+      video,
+      (result, error) => {
+        if (!result) return;
+
+        const code = cleanBarcode(result.getText());
+        if (!isPlausibleBarcode(code)) return;
+
+        const now = Date.now();
+        if (code === lastScannedCode && now - lastScanTime < 2500) return;
+
+        lastScannedCode = code;
+        lastScanTime = now;
+        barcodeInput.value = code;
+
+        stopCamera();
+        showMode("manual");
+        setStatus(`Barcode detected: ${code}`, false);
+        lookupProduct(code);
+      }
+    );
+
+    setStatus("Camera active — point it at an EAN or UPC barcode.", false);
+  } catch (error) {
+    stopCamera();
+
+    const name = error && error.name ? error.name : "";
+    if (name === "NotAllowedError") {
+      setStatus("Camera permission was denied. Allow camera access in your browser settings.", true);
+    } else if (name === "NotFoundError") {
+      setStatus("No camera was found on this device.", true);
+    } else {
+      setStatus("Could not start the camera. Confirm that the page uses HTTPS and try again.", true);
+      console.error(error);
+    }
+  }
+}
+
+function stopCamera() {
+  if (cameraControls) {
+    try { cameraControls.stop(); } catch (_) {}
+    cameraControls = null;
+  }
+
+  if (cameraReader) {
+    try { cameraReader.reset(); } catch (_) {}
+    cameraReader = null;
+  }
+
+  if (video.srcObject) {
+    for (const track of video.srcObject.getTracks()) {
+      track.stop();
+    }
+    video.srcObject = null;
+  }
+
+  startCameraButton.disabled = false;
+  stopCameraButton.disabled = true;
+}
+
+async function decodeSelectedPhoto() {
+  clearResult();
+
+  const file = photoInput.files && photoInput.files[0];
+  if (!file) return;
+
+  if (!window.ZXingBrowser) {
+    setStatus("The barcode library did not load. Check your internet connection.", true);
+    return;
+  }
+
+  const objectUrl = URL.createObjectURL(file);
+  imagePreview.src = objectUrl;
+  imagePreview.style.display = "block";
+  setStatus("Reading the barcode from the image…", false);
+
+  try {
+    const reader = new ZXingBrowser.BrowserMultiFormatReader();
+    const result = await reader.decodeFromImageUrl(objectUrl);
+    const code = cleanBarcode(result.getText());
+
+    if (!isPlausibleBarcode(code)) {
+      setStatus(`A code was detected (${escapeHtml(code)}), but it is not a standard 8–14 digit food barcode.`, true);
+      return;
+    }
+
+    barcodeInput.value = code;
+    setStatus(`Barcode detected: ${code}`, false);
+    await lookupProduct(code);
+  } catch (error) {
+    setStatus(
+      "No readable barcode was found. Try a closer, sharper, more evenly lit photo.",
+      true
+    );
+    console.error(error);
+  } finally {
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+  }
+}
+
+async function lookupProduct(code) {
+  setStatus("Looking up the product in Open Food Facts…", false);
+  clearResult();
+
+  const fields = [
+    "code",
+    "product_name",
+    "brands",
+    "ingredients_text",
+    "ingredients_text_en",
+    "ingredients_text_fr",
+    "image_front_small_url"
+  ].join(",");
+
+  const url =
+    `https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(code)}.json` +
+    `?fields=${encodeURIComponent(fields)}`;
+
+  try {
+    const response = await fetch(url, {
+      headers: { "Accept": "application/json" }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Open Food Facts returned HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.status !== 1 || !data.product) {
+      setStatus("Product not found in Open Food Facts.", true);
+      resultBox.innerHTML = `
+        <div class="result-card warning">
+          <strong>Barcode:</strong> ${escapeHtml(code)}
+          <p class="muted">
+            The barcode may be valid even when the community database has no product entry yet.
+          </p>
+        </div>`;
+      return;
+    }
+
+    renderProduct(data.product, code);
+    setStatus("Product analysis complete.", false);
+  } catch (error) {
+    setStatus("The product lookup failed. Check your connection and try again.", true);
+    console.error(error);
+  }
+}
+
+function renderProduct(product, fallbackCode) {
+  const name = product.product_name || "Unnamed product";
+  const brand = product.brands || "";
+  const code = product.code || fallbackCode;
+  const ingredients =
+    product.ingredients_text_en ||
+    product.ingredients_text ||
+    product.ingredients_text_fr ||
+    "";
+  const imageUrl = product.image_front_small_url || "";
+
+  const triggers = ingredients ? findTriggers(ingredients) : [];
+  const hasHighConcern = triggers.some(item => item.level === "High concern");
+
+  const imageHtml = imageUrl
+    ? `<img class="product-image" src="${escapeAttribute(imageUrl)}" alt="">`
+    : `<div class="product-image placeholder">No product image</div>`;
+
+  let interpretationHtml;
+
+  if (!ingredients) {
+    interpretationHtml = `
+      <div class="result-card warning">
+        <h3>Ingredient list unavailable</h3>
+        <p>
+          Open Food Facts has the product, but no usable ingredient list was returned.
+          The app cannot estimate FODMAP-related risk.
+        </p>
+      </div>`;
+  } else if (triggers.length === 0) {
+    interpretationHtml = `
+      <div class="result-card success">
+        <h3>No monitored trigger found</h3>
+        <p>
+          None of the ingredients on the current watchlist were detected in the available text.
+          This is not the same as confirming that the product is low FODMAP.
+        </p>
+      </div>`;
+  } else {
+    const items = triggers.map(item => `
+      <li>
+        <strong>${escapeHtml(item.name)}</strong>
+        <span class="badge">${escapeHtml(item.group)}</span>
+        <span class="badge">${escapeHtml(item.level)}</span>
+        <br>
+        <span class="muted">Matched: ${escapeHtml(item.matched.join(", "))}</span>
+      </li>`).join("");
+
+    interpretationHtml = `
+      <div class="result-card warning">
+        <h3>${hasHighConcern ? "Potential high-concern trigger detected" : "Potential trigger detected"}</h3>
+        <ul class="trigger-list">${items}</ul>
+        <p class="muted">
+          This is an ingredient-name screen only; quantity and serving size are not available.
+        </p>
+      </div>`;
+  }
+
+  resultBox.innerHTML = `
+    <div class="product-header">
+      ${imageHtml}
+      <div>
+        <h2 class="product-name">${escapeHtml(name)}</h2>
+        ${brand ? `<div class="muted">${escapeHtml(brand)}</div>` : ""}
+        <div class="muted">Barcode: ${escapeHtml(code)}</div>
+      </div>
+    </div>
+
+    ${interpretationHtml}
+
+    <details>
+      <summary>Full ingredient text</summary>
+      <pre>${escapeHtml(ingredients || "No ingredient text available.")}</pre>
+    </details>
+  `;
+}
+
+function findTriggers(ingredientText) {
+  const normalized = normalizeText(ingredientText);
+  const findings = [];
+
+  for (const trigger of TRIGGERS) {
+    const matched = trigger.terms.filter(term => containsWholeTerm(normalized, normalizeText(term)));
+
+    if (matched.length > 0) {
+      findings.push({
+        ...trigger,
+        matched: [...new Set(matched)]
+      });
+    }
+  }
+
+  return findings;
+}
+
+function normalizeText(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[’']/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function containsWholeTerm(text, term) {
+  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, "i");
+  return pattern.test(text);
+}
+
+function setStatus(message, isError) {
+  statusBox.textContent = message;
+  statusBox.style.color = isError ? "var(--danger)" : "var(--muted)";
+}
+
+function clearStatus() {
+  statusBox.textContent = "";
+}
+
+function clearResult() {
+  resultBox.innerHTML = "";
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value);
+}
+</script>
+</body>
+</html>
